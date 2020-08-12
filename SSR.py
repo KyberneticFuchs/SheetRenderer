@@ -14,7 +14,7 @@ class SSR(bpy.types.Operator):
     bl_label = "SSR"
     bl_options = {'REGISTER'} 
     
-    ExportPath  = 'Path to directory where you want your output to be stored'
+    ExportPath  = 'Path to the directory where you want your output to be stored'
     SpreadSheet = 'Path to the .xlsx file'
 
     def execute(self, context): 
