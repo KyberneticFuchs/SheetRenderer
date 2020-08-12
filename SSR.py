@@ -1,12 +1,12 @@
+import bpy
+import time
+import xlrd 
+
 bl_info = {
     "name": "GenText2",
     "blender": (2, 81, 0),
     "category": "Object",
 }
-
-import bpy
-import time
-import xlrd 
 
 class ObjectMoveX(bpy.types.Operator):
 
@@ -14,16 +14,17 @@ class ObjectMoveX(bpy.types.Operator):
     bl_label = "GenTex2"
     bl_options = {'REGISTER'} 
     
-    SpreadSheet = "Path to the file"
+    ExportPath  = 'Path to directory where you want your output to be stored'
+    SpreadSheet = 'Path to the .xlsx file'
 
     def execute(self, context): 
         
         scene = context.scene
         text = 'COFFE'
         
-        bpy.data.scenes[0].render.filepath = SpreadSheet
+        bpy.data.scenes[0].render.filepath = ExportPath
         
-        loc = ('/media/feetpaw/E6F47C3AF47C0ED5/UPWORK/Blender/font_things/Words_original.xlsx')
+        loc = (SpreadSheet)
         wb = xlrd.open_workbook(loc)
         sheet = wb.sheet_by_index(0)  
 
@@ -44,7 +45,7 @@ class ObjectMoveX(bpy.types.Operator):
             layer3.data.body = sheet.cell_value(i, 1)
 
             bpy.ops.render.render(animation=True, use_viewport=True)
-            bpy.data.scenes[0].render.filepath = '/media/feetpaw/E6F47C3AF47C0ED5/UPWORK/Blender/font_things/EXPORT/'
+            bpy.data.scenes[0].render.filepath = ExportPath
             
         return {'FINISHED'}
     
