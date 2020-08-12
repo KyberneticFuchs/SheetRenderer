@@ -3,15 +3,15 @@ import time
 import xlrd 
 
 bl_info = {
-    "name": "GenText2",
+    "name": "SSR",
     "blender": (2, 81, 0),
     "category": "Object",
 }
 
-class ObjectMoveX(bpy.types.Operator):
+class SSR(bpy.types.Operator):
 
-    bl_idname = "object.gen_text"
-    bl_label = "GenTex2"
+    bl_idname = "object.SSR"
+    bl_label = "SSR"
     bl_options = {'REGISTER'} 
     
     ExportPath  = 'Path to directory where you want your output to be stored'
@@ -50,11 +50,11 @@ class ObjectMoveX(bpy.types.Operator):
         return {'FINISHED'}
     
 def register():
-    bpy.utils.register_class(ObjectMoveX)
+    bpy.utils.register_class(SSR)
 
 
 def unregister():
-    bpy.utils.unregister_class(ObjectMoveX)
+    bpy.utils.unregister_class(SSR)
 
 if __name__ == "__main__":
     register()
