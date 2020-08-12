@@ -9,19 +9,19 @@ import time
 import xlrd 
 
 class ObjectMoveX(bpy.types.Operator):
-    """My Object Moving Script"""      # Use this as a tooltip for menu items and buttons.
-    bl_idname = "object.gen_text"        # Unique identifier for buttons and menu items to reference.
-    bl_label = "GenTex2"         # Display name in the interface.
-    bl_options = {'REGISTER', 'UNDO'}  # Enable undo for the operator.
 
-    def execute(self, context):        # execute() is called when running the operator.
+    bl_idname = "object.gen_text"
+    bl_label = "GenTex2"
+    bl_options = {'REGISTER'} 
+    
+    SpreadSheet = "Path to the file"
 
-        # The original script
+    def execute(self, context): 
         
         scene = context.scene
         text = 'COFFE'
         
-        bpy.data.scenes[0].render.filepath = '/media/feetpaw/E6F47C3AF47C0ED5/UPWORK/Blender/font_things/EXPORT/'
+        bpy.data.scenes[0].render.filepath = SpreadSheet
         
         loc = ('/media/feetpaw/E6F47C3AF47C0ED5/UPWORK/Blender/font_things/Words_original.xlsx')
         wb = xlrd.open_workbook(loc)
@@ -42,18 +42,12 @@ class ObjectMoveX(bpy.types.Operator):
             layer1.data.body = sheet.cell_value(i, 1)
             layer2.data.body = sheet.cell_value(i, 1)
             layer3.data.body = sheet.cell_value(i, 1)
-            
-                #bpy.context.scene.frame_current +=1
-                #print(sheet.cell_value(i, 0))
-            #bpy.ops.render.opengl(animation=True)
+
             bpy.ops.render.render(animation=True, use_viewport=True)
             bpy.data.scenes[0].render.filepath = '/media/feetpaw/E6F47C3AF47C0ED5/UPWORK/Blender/font_things/EXPORT/'
             
         return {'FINISHED'}
-
-        
-
-
+    
 def register():
     bpy.utils.register_class(ObjectMoveX)
 
@@ -61,8 +55,5 @@ def register():
 def unregister():
     bpy.utils.unregister_class(ObjectMoveX)
 
-
-# This allows you to run the script directly from Blender's Text editor
-# to test the add-on without having to install it.
 if __name__ == "__main__":
     register()
