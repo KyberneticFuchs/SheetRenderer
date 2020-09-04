@@ -36,14 +36,8 @@ def execute(self, context):
         bpy.data.scenes[0].render.filepath + sheet.cell_value(i, 1) + '/'
         bpy.context.scene.frame_current = 0
 
-        layer0 = bpy.data.objects["Text.020"]
-        layer1 = bpy.data.objects["Text.005"]
-        layer2 = bpy.data.objects["Text.027"]
-        layer3 = bpy.data.objects["Text.028"]
-        layer0.data.body = sheet.cell_value(i, 1)
-        layer1.data.body = sheet.cell_value(i, 1)
-        layer2.data.body = sheet.cell_value(i, 1)
-        layer3.data.body = sheet.cell_value(i, 1)
+        layer0 = bpy.data.objects["Text"] # Select The Text Object
+        layer0.data.body = sheet.cell_value(i, 1) # Pass the value
 
         bpy.ops.render.render(animation=True, use_viewport=True)
 
